@@ -3,7 +3,14 @@ try:
 except ImportError:
     from distutils.core import setup
 
-exec(open("panoply/constants.py").read())
+exec(
+    compile(
+        open('panoply/constants.py', "rb").read(),
+        'panoply/constants.py',
+        'exec'
+    )
+)
+
 
 setup(
     name=__package_name__,
@@ -15,8 +22,8 @@ setup(
     ],
     extras_require={
         "test": [
-            "pep8==1.7.0",
-            "coverage==4.3.4"
+            "pycodestyle==2.4.0",
+            "coverage==4.5.1"
         ]
     },
     url="https://github.com/panoplyio/panoply-python-sdk",
